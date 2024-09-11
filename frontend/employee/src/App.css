@@ -1,0 +1,319 @@
+/* General reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Header styles */
+
+header {
+    background-color: #2d6a4f;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Body styles */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background-image: url('employe_registation_form.png');
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Logo styles */
+
+.logo img {
+    height: 60px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Tangerine', cursive;
+    /* Applying Tangerine font */
+}
+
+
+/* Navigation styles */
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+nav a:hover {
+    background-color: rgb(255, 0, 0);
+    padding: 10px 15px;
+}
+
+nav a:active {
+    background-color: blue;
+}
+
+
+/* Dark mode toggle button */
+
+#toggle-dark-mode {
+    display: flex;
+    align-items: center;
+    background-color: #ffb300;
+    border: none;
+    color: #000000;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    padding: 5px;
+}
+
+
+/* Dark mode styles */
+
+.dark-mode {
+    background-color: transparent;
+}
+
+.dark-mode header {
+    background-color: #000000;
+    color: white;
+}
+
+.dark-mode footer {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+}
+
+.dark-mode h1 {
+    color: rgb(255, 255, 255);
+}
+
+#toggle-dark-mode .icon {
+    font-size: 15px;
+}
+
+#toggle-dark-mode .switch {
+    width: 30px;
+    height: 18px;
+    border-radius: 18px;
+    position: relative;
+    transition: background-color 0.3s ease;
+    margin: 0 8px;
+    background-color: rgb(0, 0, 0);
+}
+
+#toggle-dark-mode .switch::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background-color: #7b7b7b;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+}
+
+
+/* Dark mode active state */
+
+.dark-mode #toggle-dark-mode {
+    background-color: #1aac03;
+    color: #ffffff;
+}
+
+.dark-mode #toggle-dark-mode .switch {
+    background-color: #ffffff;
+}
+
+.dark-mode #toggle-dark-mode .switch::before {
+    transform: translateX(18px);
+}
+
+
+/* Icons */
+
+.fa-moon {
+    display: block;
+}
+
+.dark-mode .fa-moon {
+    display: none;
+}
+
+.fa-sun {
+    display: none;
+}
+
+.dark-mode .fa-sun {
+    display: block;
+}
+
+
+/* Form container styles */
+
+.form-container {
+    max-width: 700px;
+    margin: 90px auto;
+    background: #747373;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.1);
+    opacity: 90%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+
+/* Form input styles */
+
+.input-container {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.input-container input,
+.input-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #00ff80;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.input-container input:focus,
+.input-container select:focus {
+    border-color: #fffb00;
+    outline: none;
+    box-shadow: 0px 0px 10px #cac705;
+}
+
+
+/* lable eka ebuwama ena color eka  */
+
+.input-container input:focus+label,
+.input-container select:focus+label,
+.input-container input:not(:placeholder-shown)+label,
+.input-container select:not(:placeholder-shown)+label {
+    transform: translateY(-24px);
+    font-size: 12px;
+    color: #ffffff;
+}
+
+
+/* firstname text fillds wenas wennawa */
+
+.input-container label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    background-color: #747373;
+    padding: 0 5px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #ffffff;
+    pointer-events: none;
+}
+
+.input-container input::placeholder,
+.input-container select::placeholder {
+    color: transparent;
+}
+
+.input-container input:focus::placeholder,
+.input-container select:focus::placeholder {
+    color: transparent;
+}
+
+
+/* Form buttons */
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-button,
+.clear-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 48%;
+}
+
+.submit-button {
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.back-button {
+    background-color: #ffd166;
+}
+
+.back-button:active {
+    background-color: #ff4b4b;
+}
+
+.clear-button:hover {
+    background-color: #ff4b4b;
+}
+
+.clear-button {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.submit-button {
+    background-color: #2d6a4f;
+    color: white;
+}
+
+
+/* Footer styles */
+
+footer {
+    background-color: #2d6a4f;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 5px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.togle {
+    margin: 0px 50%;
+}
