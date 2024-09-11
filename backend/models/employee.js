@@ -42,9 +42,22 @@ const EmployeeSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: (v) => {
-                return Joi.date().iso().validate(v).error === undefined;
+                // Check if the date is not in the future
+                const today = new Date();
+                if (v > today) {
+                    return false; // Date of birth cannot be in the future
+                }
+
+                // Check if the date is not more than 60 years ago
+                const maxDate = new Date();
+                maxDate.setFullYear(today.getFullYear() - 60);
+                if (v < maxDate) {
+                    return false; // Date of birth must be within the last 60 years
+                }
+
+                return true;
             },
-            message: 'Date of Birth must be a valid ISO date'
+            message: 'Date of Birth must be within the last 60 years and cannot be a future date'
         }
     },
 

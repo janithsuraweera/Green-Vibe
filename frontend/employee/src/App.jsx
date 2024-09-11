@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css'; // Make sure the CSS is still being imported
+import './App.css'; // CSS import කරන්නේ පරීක්ෂා කරන්න
 
 function EmployeeRegistrationForm() {
   const [formData, setFormData] = useState({
@@ -49,6 +49,21 @@ function EmployeeRegistrationForm() {
     }
   };
 
+  const handleClear = () => {
+    setFormData({
+      employeeID: '',
+      firstName: '',
+      lastName: '',
+      dob: '',
+      gender: '',
+      email: '',
+      nic: '',
+      address: '',
+      phoneNumber: '',
+      designation: '',
+    });
+  };
+
   return (
     <div className={darkMode ? 'dark-mode' : ''}>
       <header>
@@ -67,8 +82,7 @@ function EmployeeRegistrationForm() {
         <div className="form-container">
           <h1>Employee Registration Form</h1>
           <form onSubmit={handleSubmit}>
-
-          <div className="input-container">
+            <div className="input-container">
               <input
                 type="text"
                 id="employeeID"
@@ -76,6 +90,7 @@ function EmployeeRegistrationForm() {
                 value={formData.employeeID}
                 onChange={handleChange}
                 required
+                placeholder=" "
               />
               <label htmlFor="employeeID">Employee ID</label>
             </div>
@@ -88,6 +103,7 @@ function EmployeeRegistrationForm() {
                 value={formData.firstName}
                 onChange={handleChange}
                 required
+                placeholder=" "
               />
               <label htmlFor="firstName">First Name</label>
             </div>
@@ -100,6 +116,7 @@ function EmployeeRegistrationForm() {
                 value={formData.lastName}
                 onChange={handleChange}
                 required
+                placeholder=" "
               />
               <label htmlFor="lastName">Last Name</label>
             </div>
@@ -112,6 +129,7 @@ function EmployeeRegistrationForm() {
                 value={formData.dob}
                 onChange={handleChange}
                 required
+                placeholder=" "
               />
               <label htmlFor="dob">DOB</label>
             </div>
@@ -124,7 +142,7 @@ function EmployeeRegistrationForm() {
                 onChange={handleChange}
                 required
               >
-                <option value="" disabled selected></option>
+                <option value="" disabled></option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
@@ -140,6 +158,7 @@ function EmployeeRegistrationForm() {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                placeholder=" "
               />
               <label htmlFor="email">Email</label>
             </div>
@@ -152,6 +171,7 @@ function EmployeeRegistrationForm() {
                 value={formData.nic}
                 onChange={handleChange}
                 required
+                placeholder=" "
               />
               <label htmlFor="nic">NIC</label>
             </div>
@@ -164,6 +184,7 @@ function EmployeeRegistrationForm() {
                 value={formData.address}
                 onChange={handleChange}
                 required
+                placeholder=" "
               />
               <label htmlFor="address">Address</label>
             </div>
@@ -176,6 +197,7 @@ function EmployeeRegistrationForm() {
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 required
+                placeholder=" "
               />
               <label htmlFor="phoneNumber">Phone Number</label>
             </div>
@@ -188,7 +210,7 @@ function EmployeeRegistrationForm() {
                 onChange={handleChange}
                 required
               >
-                <option value="" disabled selected></option>
+                <option value="" disabled></option>
                 <option value="manager">Manager</option>
                 <option value="supervisor">Supervisor</option>
                 <option value="engineer">Engineer</option>
@@ -200,7 +222,7 @@ function EmployeeRegistrationForm() {
 
             <div className="form-buttons">
               <button type="button" className="back-button">Back</button>
-              <button type="reset" className="clear-button">Clear</button>
+              <button type="button" className="clear-button" onClick={handleClear}>Clear</button>
             </div>
             <button type="submit" className="submit-button">Submit</button>
           </form>
@@ -231,3 +253,4 @@ function EmployeeRegistrationForm() {
 }
 
 export default EmployeeRegistrationForm;
+//version2
