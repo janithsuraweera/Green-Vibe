@@ -2,51 +2,128 @@ import React, { useState } from 'react';
 import './App.css'; // Make sure the CSS is still being imported
 
 function EmployeeRegistrationForm() {
+  const [formData, setFormData] = useState({
+    employeeID: '',
+    firstName: '',
+    lastName: '',
+    dob: '',
+    gender: '',
+    email: '',
+    nic: '',
+    address: '',
+    phoneNumber: '',
+    designation: '',
+  });
+
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:9001/api/employees', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        alert('Employee registered successfully');
+      } else {
+        alert('Failed to register employee');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error occurred during registration');
+    }
+  };
+
   return (
     <div className={darkMode ? 'dark-mode' : ''}>
-      {/* Header Section */}
       <header>
         <div className="logo">
           <img src="logo.png" alt="Green Vibe Logo" />
           <span>Green Vibe</span>
         </div>
         <nav>
-
           <a href="#">Home</a>
           <a href="#">Contact</a>
           <a href="#">Help</a>
-
         </nav>
       </header>
 
-      {/* Main Content Section */}
       <main>
         <div className="form-container">
           <h1>Employee Registration Form</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
+
+          <div className="input-container">
+              <input
+                type="text"
+                id="employeeID"
+                name="employeeID"
+                value={formData.employeeID}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="employeeID">Employee ID</label>
+            </div>
+
             <div className="input-container">
-              <input type="text" id="firstName" name="firstName" placeholder=" " required />
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
               <label htmlFor="firstName">First Name</label>
             </div>
 
             <div className="input-container">
-              <input type="text" id="lastName" name="lastName" placeholder=" " required />
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
               <label htmlFor="lastName">Last Name</label>
             </div>
 
             <div className="input-container">
-              <input type="date" id="dob" name="dob" placeholder=" " required />
+              <input
+                type="date"
+                id="dob"
+                name="dob"
+                value={formData.dob}
+                onChange={handleChange}
+                required
+              />
               <label htmlFor="dob">DOB</label>
             </div>
 
             <div className="input-container">
-              <select id="gender" name="gender" required>
+              <select
+                id="gender"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
+              >
                 <option value="" disabled selected></option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -56,27 +133,61 @@ function EmployeeRegistrationForm() {
             </div>
 
             <div className="input-container">
-              <input type="email" id="email" name="email" placeholder=" " required />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
               <label htmlFor="email">Email</label>
             </div>
 
             <div className="input-container">
-              <input type="text" id="nic" name="nic" placeholder=" " required />
+              <input
+                type="text"
+                id="nic"
+                name="nic"
+                value={formData.nic}
+                onChange={handleChange}
+                required
+              />
               <label htmlFor="nic">NIC</label>
             </div>
 
             <div className="input-container">
-              <input type="text" id="address" name="address" placeholder=" " required />
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                required
+              />
               <label htmlFor="address">Address</label>
             </div>
 
             <div className="input-container">
-              <input type="text" id="phoneNumber" name="phoneNumber" placeholder=" " required />
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                required
+              />
               <label htmlFor="phoneNumber">Phone Number</label>
             </div>
 
             <div className="input-container">
-              <select id="designation" name="designation" required>
+              <select
+                id="designation"
+                name="designation"
+                value={formData.designation}
+                onChange={handleChange}
+                required
+              >
                 <option value="" disabled selected></option>
                 <option value="manager">Manager</option>
                 <option value="supervisor">Supervisor</option>
@@ -96,25 +207,24 @@ function EmployeeRegistrationForm() {
         </div>
       </main>
 
-      {/* Footer Section */}
       <footer>
         <p>&copy; 2024 Green Vibe. All rights reserved.</p>
         <div className="togle">
-                  <button
-                    id="toggle-dark-mode"
-                    aria-label="Toggle Dark Mode"
-                    className="darkmode"
-                    onClick={toggleDarkMode}
-                    >
-                    <span className="icon">
-                      <i className="fas fa-moon" />
-                    </span>
-                    <span className="switch" />
-                    <span className="icon">
-                      <i className="fas fa-sun" />
-                    </span>
-                  </button>
-                  </div>
+          <button
+            id="toggle-dark-mode"
+            aria-label="Toggle Dark Mode"
+            className="darkmode"
+            onClick={toggleDarkMode}
+          >
+            <span className="icon">
+              <i className="fas fa-moon" />
+            </span>
+            <span className="switch" />
+            <span className="icon">
+              <i className="fas fa-sun" />
+            </span>
+          </button>
+        </div>
       </footer>
     </div>
   );

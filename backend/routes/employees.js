@@ -2,7 +2,6 @@ const express = require('express');
 const Joi = require('joi');
 const router = express.Router()
 const Employees = require("../models/employee");
-
 // GET /api/employees/test - Test the employee routes.
 router.get("/test", (req, res) => res.send("Employee routes working..."));
 
@@ -13,12 +12,25 @@ router.post("/", (req, res) => {
         .catch(() => res.status(400).json({ msg: "Employee adding failed..." }));
 });
 
+
 // GET /api/employees - Get all employees from the database.    //READ
 router.get("/", (req, res) => {
     Employees.find()
         .then((employees) => res.json(employees))
         .catch((err) => res.status(400).json({ msg: "No employee found" }));
 });
+
+// routes/employees.js
+router.post("/", (req, res) => {
+    Employees.create(req.body)
+        .then(() => res.json({ msg: "Employee added successfully..." }))
+        .catch((err) => {
+            console.log("Error: ", err);
+            res.status(400).json({ msg: "Employee adding failed..." });
+        });
+});
+
+
 
 // GET /api/employees/search/:name - Search for employees by name.
 // GET /api/employees/:id - Get a specific employee by ID from the database.
