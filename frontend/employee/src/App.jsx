@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css'; 
+import EmployeeTable from './EmployeeTable';
 
 function EmployeeRegistrationForm() {
   const [formData, setFormData] = useState({
