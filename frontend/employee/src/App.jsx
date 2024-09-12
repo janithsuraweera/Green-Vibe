@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css'; // CSS import කරන්නේ පරීක්ෂා කරන්න
+import './App.css'; 
 
 function EmployeeRegistrationForm() {
   const [formData, setFormData] = useState({

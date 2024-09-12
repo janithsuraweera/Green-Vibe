@@ -9,7 +9,7 @@ const EmployeeSchema = new mongoose.Schema({
         unique: true,
         validate: {
             validator: (v) => {
-                return Joi.string().regex(/^[a-zA-Z0-9]{5,10}$/).validate(v).error === undefined;
+                return Joi.string().regex(/^[a-zA-Z0-9]{3,10}$/).validate(v).error === undefined;
             },
             message: 'Employee ID must be 5-10 characters long and contain only letters and numbers'
         }
