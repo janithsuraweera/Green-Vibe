@@ -67,18 +67,23 @@ function EmployeeRegistrationForm() {
   };
 
   return (
+    
     <div className={darkMode ? 'dark-mode' : ''}>
       <header>
         <div className="logo">
           <img src="logo.png" alt="Green Vibe Logo" />
           <span>Green Vibe</span>
         </div>
+
+{/* //navigation */}
         <nav>
           <a href="#">Home</a>
           <a href="#">Contact</a>
           <a href="#">Help</a>
+          <a href="http://localhost:9001/api/employees">Employee Table</a>
         </nav>
       </header>
+
 
       <main>
         <div className="form-container">
