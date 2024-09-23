@@ -1,0 +1,34 @@
+
+
+/* Logo styles */
+
+.logo img {
+    height: 60px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Tangerine', cursive;
+    /* Applying Tangerine font */
+}
+
+
+/* Navigation styles */
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+nav a:hover {
+    background-color: rgb(255, 0, 0);
+    padding: 10px 15px;
+}
+
+nav a:active {
+    background-color: blue;
+}
