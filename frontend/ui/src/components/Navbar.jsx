@@ -5,7 +5,7 @@ export const Navbar = () => {
   return (
     <nav>
     <div className="logo">
-  <img src="./image/logo.png" alt="Green Vibe Logo" />
+  <img src="logo.png" alt="Green Vibe Logo" />
   <span>Green Vibe</span>
 </div>
 
