@@ -1,0 +1,134 @@
+/* Form container styles */
+
+.form-container {
+    max-width: 600px;
+    margin: 90px auto;
+    background: #747373;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.1);
+    opacity: 90%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+
+/* Form input styles */
+
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-container input,
+.input-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #00ff80;
+    border-radius: 4px;
+    font-size: 16px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.input-container input:focus,
+.input-container select:focus {
+    border-color: #fffb00;
+    outline: none;
+    box-shadow: 0px 0px 10px #cac705;
+}
+
+
+/* Move label up when input is focused or not empty */
+
+.input-container input:focus+label,
+.input-container select:focus+label,
+.input-container input:not(:placeholder-shown)+label,
+.input-container select:not(:placeholder-shown)+label {
+    transform: translateY(-30px);
+    font-size: 12px;
+    color: #ffffff;
+}
+
+
+/* Style the label */
+
+.input-container label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    background-color: #747373;
+    opacity: 95%;
+    transition: all 0.4s ease;
+    font-size: 14px;
+    color: #ffffff;
+    pointer-events: none;
+}
+
+.input-container input::placeholder,
+.input-container select::placeholder {
+    color: transparent;
+}
+
+.input-container input:focus::placeholder,
+.input-container select:focus::placeholder {
+    color: transparent;
+}
+
+
+/* Form buttons */
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-button,
+.clear-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 48%;
+}
+
+.submit-button {
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.back-button {
+    background-color: #ffd166;
+}
+
+.back-button:active {
+    background-color: #ff4b4b;
+}
+
+.clear-button:hover {
+    background-color: #ff4b4b;
+}
+
+.clear-button {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.submit-button {
+    background-color: #2d6a4f;
+    color: white;
+}
+
+

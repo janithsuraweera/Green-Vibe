@@ -5,6 +5,7 @@ import './App.css'
 import { Navbar } from './components/Navbar'
 import Footer from './components/Footer'
 import { Employeelist } from './components/Employeelist'
+import { InsertEmployee } from './components/InsertEmployee'
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
   return (
     <>
     <Navbar></Navbar>
-    <Employeelist></Employeelist>
+    <InsertEmployee/>
+    <Employeelist/>
     <Footer></Footer>
     
     </>
