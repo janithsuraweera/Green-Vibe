@@ -14,21 +14,25 @@ export const Employeelist = () => {
             .catch(() => { console.log("Error while getting data"); });
     }, []);
 
-    
     const onDeleteClick = (_id) => { 
         axios
           .delete(`http://localhost:9001/api/employees/${_id}`)
           .then(() => {
             window.location.reload();
-          
           })
           .catch((err) => {
             console.error("Delete Error", err.response ? err.response.data : err.message);
-          })
-    }
-    
+          });
+    };
 
-  
+    const onUpdateClick = (employee) => {
+        // Add your update logic here (e.g., redirect to an update form or show a modal)
+        console.log("Updating employee: ", employee);
+
+        // Example: Redirect to an update page (assuming routing is set up)
+        // window.location.href = `/update-employee/${employee._id}`;
+    };
+
     return (
         <div>
             <h1>Employee Table</h1>
@@ -45,7 +49,7 @@ export const Employeelist = () => {
                         <th>Address</th>
                         <th>Phone Number</th>
                         <th>Designation</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,13 +66,15 @@ export const Employeelist = () => {
                                 <td>{employee.address}</td>
                                 <td>{employee.phoneNumber}</td>
                                 <td>{employee.designation}</td>
-                                <td class="buttons">
-                                    <button onClick={() => onsDeleteClick(employee)}>
-                                        <i className="fas fa-edit"></i> 
-                                        {/* Edit icon */}
-                                    </button>
+                                <td className="buttons">
+                                    {/* Delete Button */}
                                     <button onClick={() => onDeleteClick(employee._id)}>
                                         <i className="fas fa-trash"></i> {/* Delete icon */}
+                                    </button>
+
+                                    {/* Update Button */}
+                                    <button onClick={() => onUpdateClick(employee)}>
+                                        <i className="fas fa-edit"></i> {/* Update icon */}
                                     </button>
                                 </td>
                             </tr>

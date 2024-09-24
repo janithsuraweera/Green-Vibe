@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from 'axios';
+// import './UpdateEmployee.css'; // Make sure this path is correct
 
 function UpdateEmployee() {
-  const [employeedata, setEmployeedata] = useState({
+  const [employee, setEmployee] = useState({
     employeeID: "",
     firstName: "",
     lastName: "",
@@ -16,150 +17,180 @@ function UpdateEmployee() {
     designation: "",
   });
 
-  const { _id } = useParams();
-  const navigate = useNavigate(); // Fixed navigate typo
+  const { id } = useParams(); // Get the employee ID from the URL
+  const navigate = useNavigate(); // For redirecting after update
 
-  // Fetch employee data
+  // Fetch employee details when the component is mounted
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/api/employees/${_id}`)
+      .get(`http://localhost:9001/api/employees/${id}`) // Correct API route
       .then((res) => {
-        setEmployeedata({
-          employeeID: res.data.employeeID,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          dob: res.data.dob,
-          gender: res.data.gender,
-          email: res.data.email,
-          nic: res.data.nic,
-          address: res.data.address,
-          phoneNumber: res.data.phoneNumber,
-          designation: res.data.designation,
-        });
+        setEmployee(res.data); // Populate the form with the fetched data
       })
       .catch((err) => {
-        console.error("Error fetching employee data", err);
+        console.log("Error from UpdateEmployee:", err);
       });
-  }, [_id]);
+  }, [id]);
 
-  // Handle form input change
-  const onChange = (e) => {
-    setEmployeedata({
-      ...employeedata, // Maintain existing values
-      [e.target.name]: e.target.value, // Update the key dynamically
-    });
+  // Handle input changes in the form
+  const handleChange = (e) => {
+    setEmployee({ ...employee, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
-  const onSubmit = (e) => {
+  // Handle form submission to update the employee
+  const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
-      .put(`http://localhost:9001/api/employees/${_id}`, employeedata)
+      .put(`http://localhost:9001/api/employees/${id}`, employee) // PUT request to update the employee
       .then((res) => {
-        console.log("Employee updated successfully", res.data);
-        navigate("/employees"); // Navigate back to the employee list or another page
+        navigate("/list"); // Redirect to the employee list after successful update
       })
       .catch((err) => {
-        console.error("Error updating employee", err);
+        console.log("Error updating employee:", err);
       });
   };
 
   return (
-    <div>
-      <h1>Update Employee</h1>
-      <form onSubmit={onSubmit}>
-        <label>Employee ID:</label>
-        <input
-          type="text"
-          name="employeeID"
-          value={employeedata.employeeID}
-          onChange={onChange}
-          readOnly
-        />
-        <br />
+    <div className="form-container">
+      <h1>Update Employee Information</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="input-container">
+          <input
+            type="text"
+            name="employeeID"
+            value={employee.employeeID}
+            onChange={handleChange}
+            placeholder="Employee ID"
+            required
+            disabled // Disable Employee ID field as it's auto-incremented
+          />
+          <label>Employee ID</label>
+        </div>
 
-        <label>First Name:</label>
-        <input
-          type="text"
-          name="firstName"
-          value={employeedata.firstName}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <input
+            type="text"
+            name="firstName"
+            value={employee.firstName}
+            onChange={handleChange}
+            placeholder="First Name"
+            required
+          />
+          <label>First Name</label>
+        </div>
 
-        <label>Last Name:</label>
-        <input
-          type="text"
-          name="lastName"
-          value={employeedata.lastName}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <input
+            type="text"
+            name="lastName"
+            value={employee.lastName}
+            onChange={handleChange}
+            placeholder="Last Name"
+            required
+          />
+          <label>Last Name</label>
+        </div>
 
-        <label>Date of Birth:</label>
-        <input
-          type="date"
-          name="dob"
-          value={employeedata.dob}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <input
+            type="date"
+            name="dob"
+            value={employee.dob}
+            onChange={handleChange}
+            required
+          />
+          <label>DOB</label>
+        </div>
 
-        <label>Gender:</label>
-        <input
-          type="text"
-          name="gender"
-          value={employeedata.gender}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <select
+            name="gender"
+            value={employee.gender}
+            onChange={handleChange}
+            required
+          >
+            <option value="" disabled>
+              Select Gender
+            </option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+          <label>Gender</label>
+        </div>
 
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={employeedata.email}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <input
+            type="email"
+            name="email"
+            value={employee.email}
+            onChange={handleChange}
+            required
+          />
+          <label>Email</label>
+        </div>
 
-        <label>NIC:</label>
-        <input
-          type="text"
-          name="nic"
-          value={employeedata.nic}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <input
+            type="text"
+            name="nic"
+            value={employee.nic}
+            onChange={handleChange}
+            required
+          />
+          <label>NIC</label>
+        </div>
 
-        <label>Address:</label>
-        <input
-          type="text"
-          name="address"
-          value={employeedata.address}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <input
+            type="text"
+            name="address"
+            value={employee.address}
+            onChange={handleChange}
+            required
+          />
+          <label>Address</label>
+        </div>
 
-        <label>Phone Number:</label>
-        <input
-          type="text"
-          name="phoneNumber"
-          value={employeedata.phoneNumber}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <input
+            type="text"
+            name="phoneNumber"
+            value={employee.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+          <label>Phone Number</label>
+        </div>
 
-        <label>Designation:</label>
-        <input
-          type="text"
-          name="designation"
-          value={employeedata.designation}
-          onChange={onChange}
-        />
-        <br />
+        <div className="input-container">
+          <select
+            name="designation"
+            value={employee.designation}
+            onChange={handleChange}
+            required
+          >
+            <option value="" disabled>
+              Select Designation
+            </option>
+            <option value="manager">Manager</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="engineer">Engineer</option>
+            <option value="technician">Technician</option>
+            <option value="worker">Worker</option>
+          </select>
+          <label>Designation</label>
+        </div>
 
-        <button type="submit">Update Employee</button>
+        <div className="form-buttons">
+          <button type="submit" className="submit-button">
+            Update
+          </button>
+          <button type="button" className="back-button" onClick={() => navigate("/list")}>
+            Back
+          </button>
+        </div>
       </form>
     </div>
   );
