@@ -197,7 +197,7 @@ export const InsertEmployee = () => {
           <button type="button" className="clear-button">Clear</button>
         </div>
 
-        <button type="submit" className="submit-button">Submit</button> 
+        <button type="submit" className="submit-button" onChange={handleChange}>Submit</button> 
       </form>
     </div>
   );

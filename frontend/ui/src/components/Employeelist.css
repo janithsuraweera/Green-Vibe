@@ -1,9 +1,10 @@
 /* Table overall styles */
 table {
-    width: 100%;
+  width: 100%;
     border-collapse: collapse;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     animation: tableAppear 1s ease-in-out;
+    background-color: rgb(171, 171, 171);
 
   }
   

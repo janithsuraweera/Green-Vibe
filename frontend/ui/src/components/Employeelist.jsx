@@ -14,14 +14,21 @@ export const Employeelist = () => {
             .catch(() => { console.log("Error while getting data"); });
     }, []);
 
-    const handleUpdate = (employee) => {
-        // Update logic here
-    };
+    
+    const onDeleteClick = (_id) => { 
+        axios
+          .delete(`http://localhost:9001/api/employees/${_id}`)
+          .then(() => {
+            window.location.reload();
+          
+          })
+          .catch((err) => {
+            console.error("Delete Error", err.response ? err.response.data : err.message);
+          })
+    }
+    
 
-    const handleDelete = (employeeID) => {
-        // Delete logic here
-    };
-
+  
     return (
         <div>
             <h1>Employee Table</h1>
@@ -56,10 +63,10 @@ export const Employeelist = () => {
                                 <td>{employee.phoneNumber}</td>
                                 <td>{employee.designation}</td>
                                 <td class="buttons">
-                                    <button onClick={() => handleUpdate(employee)}>
-                                        <i className="fas fa-edit"></i> {/* Edit icon */}
-                                    </button>
-                                    <button onClick={() => handleDelete(employee.employeeID)}>
+                                    {/* <button onClick={() => onsDeleteClick(employee)}> */}
+                                        <i className="fas fa-edit"></i> Edit icon
+                                    {/* </button> */}
+                                    <button onClick={() => onDeleteClick(employee._id)}>
                                         <i className="fas fa-trash"></i> {/* Delete icon */}
                                     </button>
                                 </td>
