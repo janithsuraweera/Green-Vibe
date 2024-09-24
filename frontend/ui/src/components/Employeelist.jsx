@@ -63,9 +63,9 @@ export const Employeelist = () => {
                                 <td>{employee.phoneNumber}</td>
                                 <td>{employee.designation}</td>
                                 <td class="buttons">
-                                    {/* <button onClick={() => onsDeleteClick(employee)}> */}
+                                    <button onClick={() => onsDeleteClick(employee)}>
                                         <i className="fas fa-edit"></i> Edit icon
-                                    {/* </button> */}
+                                    </button>
                                     <button onClick={() => onDeleteClick(employee._id)}>
                                         <i className="fas fa-trash"></i> {/* Delete icon */}
                                     </button>
