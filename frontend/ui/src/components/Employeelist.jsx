@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Correctly import Link here
 import axios from "axios";
 import './Employeelist.css';
+import UpdateEmployee from './UpdateEmployee';
 
 export const Employeelist = () => {
     const [employees, setEmployees] = useState([]);
@@ -71,11 +73,14 @@ export const Employeelist = () => {
                                     <button onClick={() => onDeleteClick(employee._id)}>
                                         <i className="fas fa-trash"></i> {/* Delete icon */}
                                     </button>
-
-                                    {/* Update Button */}
-                                    <button onClick={() => onUpdateClick(employee)}>
-                                        <i className="fas fa-edit"></i> {/* Update icon */}
-                                    </button>
+                                   
+                             
+                                   <Link lassName="buttons"
+                                        to={`/update/${employee._id}`}
+                                        className="fas fa-edit">
+                                    </Link>
+                                
+  
                                 </td>
                             </tr>
                         ))

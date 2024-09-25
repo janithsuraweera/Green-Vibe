@@ -52,7 +52,7 @@ table {
     transform: scale(1.1);
   }
   
-  button:first-of-type {
+  Link:first-of-type {
     background-color: #007bff;
   }
   
@@ -78,20 +78,20 @@ table {
       padding: 8px;
     }
   
-    button {
+    button,Link {
       padding: 3px 6px;
     }
   }
   
   
-  button:first-of-type {
+  Link:first-of-type {
     background-color: #007bff;
   }
   
   button:last-of-type {
     background-color: #dc3545;
   }
-  .buttons{
+  .buttons,Link{
     display: flex;
     
   }
