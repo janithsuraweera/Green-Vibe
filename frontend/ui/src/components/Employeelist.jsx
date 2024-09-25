@@ -38,10 +38,7 @@ export const Employeelist = () => {
     return (
         <div>
             <h1>Employee Table</h1>
-            <div className="serchbar">
-<input type="text" placeholder='Search '/>
 
-            </div>
             <table>
                 <thead>
                     <tr>
