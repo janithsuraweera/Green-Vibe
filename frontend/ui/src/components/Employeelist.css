@@ -95,3 +95,13 @@ table {
     display: flex;
     
   }
+
+  h1{
+    padding-top:50px;
+    color: white;
+  }
+  .serchbar{
+    text-align: right;
+    padding: 20px;
+
+  }

@@ -1,3 +1,10 @@
+
+body {
+    background-image: url('employe_registation_form.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
 /* Form container styles */
 
 .form-container {

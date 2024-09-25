@@ -1,16 +1,17 @@
 
 
 /* Logo styles */
-
 .logo img {
     height: 60px;
     margin-right: 10px;
+
 }
 
 .logo span {
     font-size: 32px;
     font-weight: 700;
     font-family: 'Tangerine', cursive;
+    color: black;
     /* Applying Tangerine font */
 }
 
@@ -18,17 +19,27 @@
 /* Navigation styles */
 
 nav a {
-    color: rgb(0, 0, 0);
+    margin-top: 200px;
+    padding: 10px;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     margin: 0 15px;
     font-weight: 500;
+
+
 }
 
 nav a:hover {
     background-color: rgb(255, 0, 0);
     padding: 10px 15px;
+
 }
 
 nav a:active {
-    background-color: blue;
+    background-color: rgb(0, 233, 136);
+}
+.bar{
+    text-align: right;
+    background-color: rgb(89, 162, 95);
+    padding:10px;
 }

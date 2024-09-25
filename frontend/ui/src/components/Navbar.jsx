@@ -10,13 +10,13 @@ export const Navbar = () => {
   <span>Green Vibe</span>
 </div>
 
-
+<div className="bar">
   <Link to="#">Home</Link>
   <Link to="#">Contact</Link>
   <Link to="#">Help</Link>
   <Link to="/list">Employee List</Link>
   <Link to="/insert">Add Employee</Link>
-
+  </div>
 </nav>
   )
 }
