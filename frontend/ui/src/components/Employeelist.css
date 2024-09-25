@@ -89,7 +89,7 @@ table {
   }
   
   button:last-of-type {
-    background-color: #dc3545;
+    background-color: #ffd500;
   }
   .buttons,Link{
     display: flex;
@@ -105,3 +105,4 @@ table {
     padding: 20px;
 
   }
+
