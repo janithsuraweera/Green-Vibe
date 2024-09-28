@@ -36,11 +36,8 @@ nav a:hover {
 
 }
 
-nav a:active {
-    background-color: rgb(0, 233, 136);
-}
-.bar{
-    text-align: right;
-    background-color: rgb(89, 162, 95);
+nav{
+    text-align: left;
+    background-color: rgb(21, 105, 27);
     padding:10px;
 }

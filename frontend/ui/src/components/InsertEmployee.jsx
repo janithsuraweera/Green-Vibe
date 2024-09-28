@@ -25,6 +25,7 @@ export const InsertEmployee = () => {
     console.log(employeedata);
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

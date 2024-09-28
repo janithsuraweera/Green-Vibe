@@ -8,9 +8,7 @@ export const Navbar = () => {
     <div className="logo">
   <img src="logo.png" alt="Green Vibe Logo" />
   <span>Green Vibe</span>
-</div>
 
-<div className="bar">
   <Link to="#">Home</Link>
   <Link to="#">Contact</Link>
   <Link to="#">Help</Link>
