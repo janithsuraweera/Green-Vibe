@@ -9,9 +9,9 @@ body {
 
 .form-container {
     max-width: 600px;
-    margin: 90px auto;
+    margin:10px auto;
     background: #747373;
-    padding: 20px;
+    padding: 10px 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.1);
     opacity: 90%;
@@ -20,6 +20,7 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 20px;
+
     font-size: 25px;
     font-weight: bolder;
 }
