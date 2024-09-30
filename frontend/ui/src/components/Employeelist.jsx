@@ -108,7 +108,7 @@ export const Employeelist = () => {
 
                                     {/* Salary Report Button */}
                                     <button onClick={() => generateSalaryReport(employee)}>
-                                        Generate Salary Report
+                                    <i className="fas fa-trash" id="reportbtn"></i>
                                     </button>
                                 </td>
                             </tr>
