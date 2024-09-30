@@ -6,9 +6,9 @@ export const Dropdown = () => {
   return (
   
   <div class="dropdown">
-  <button class="dropbtn"><i class="fas fa-bars fa-2x"></i></button>
+  <button class="dropbtn"><i class="fas fa-bars fa-1x"></i></button>
   <div class="dropdown-content">
-    <a href="#">Dashbord</a>
+    <a href="#">Dashbord </a>
     <Link to="/list">Employee List</Link>
     <Link to="/insert">Add Employee</Link>
   </div>

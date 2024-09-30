@@ -8,7 +8,7 @@ body {
 /* Form container styles */
 
 .form-container {
-    max-width: 600px;
+    max-width: 700px;
     margin:10px auto;
     background: #747373;
     padding: 10px 20px;
@@ -16,8 +16,7 @@ body {
     box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.1);
     opacity: 90%;
     animation: tableAppear 1s ease-in-out;
-    overflow: hidden;
-    
+        overflow: hidden;
 }
 
 h1 {
@@ -111,21 +110,25 @@ h1 {
 }
 
 .submit-button {
+
     width: 100%;
     cursor: pointer;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     font-size: 16px;
-    margin-top: 10px;
-  background-color: #00fd15;
+    margin-top: 10pX;
+    align-items: center;
     color: white;
 }
 
 .submit-button:active{
     background-color: #00f815;
 }
-
+.back-button{
+    background-color: #0baa18;
+   
+}
 
 .back-button:hover {
     background-color: #ff4b4b;
@@ -133,10 +136,3 @@ h1 {
 .clear-button:hover {
     background-color: #ff4b4b;
 }
-
-/* .clear-button {
-    background-color: #ff6b6b;
-    color: white;
-} */
-
-
