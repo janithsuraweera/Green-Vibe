@@ -6,12 +6,14 @@ import { Employeelist } from './components/Employeelist';
 import { InsertEmployee } from './components/InsertEmployee';
 import UpdateEmployee from './components/UpdateEmployee'; // Import the UpdateEmployee component
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Dropdown } from './components/Dropdown';
 
 function App() {
   return (
     <>
       <Router>
         <Navbar />
+        <Dropdown></Dropdown>
         <Routes>
           <Route path="/list" element={<Employeelist />} />
           <Route path="/insert" element={<InsertEmployee />} />

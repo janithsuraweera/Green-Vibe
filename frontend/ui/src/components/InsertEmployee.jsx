@@ -52,15 +52,8 @@ export const InsertEmployee = () => {
   };
 
   return (
-<div>
-  <div class="dropdown">
-  <button class="dropbtn"><i class="fas fa-bars fa-2x"></i></button>
-  <div class="dropdown-content">
-    <a href="#">Dashbord</a>
-    <a href="#">Employee List</a>
-    <a href="#">Add Employee</a>
-  </div>
-</div>
+
+
     <div className="form-container">
        
       <h1>Employee Registration Form</h1>
@@ -211,6 +204,6 @@ export const InsertEmployee = () => {
         <button type="submit" className="submit-button" onChange={handleChange}>Submit</button> 
       </form>
     </div>
-    </div>
+
   );
 };
