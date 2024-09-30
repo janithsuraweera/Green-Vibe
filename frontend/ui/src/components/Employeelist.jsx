@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Correctly import Link here
+import { Link } from 'react-router-dom'; 
 import axios from 'axios';
 import './Employeelist.css';
 import UpdateEmployee from './UpdateEmployee';
 
 export const Employeelist = () => {
     const [employees, setEmployees] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(''); // State for search query
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         axios.get('http://localhost:9001/api/employees')
@@ -18,8 +18,7 @@ export const Employeelist = () => {
     }, []);
 
     const onDeleteClick = (_id) => {
-        axios
-            .delete(`http://localhost:9001/api/employees/${_id}`)
+        axios.delete(`http://localhost:9001/api/employees/${_id}`)
             .then(() => {
                 window.location.reload();
             })
@@ -29,26 +28,20 @@ export const Employeelist = () => {
     };
 
     const handleSearch = (e) => {
-        setSearchQuery(e.target.value); // Update the search query when the user types in the search box
+        setSearchQuery(e.target.value);
     };
 
-    // Filter the employees based on the search query (match against employeeID)
+    // Filter employees based on search query (match against employeeID, firstName, lastName, or NIC)
     const filteredEmployees = employees.filter(employee =>
-        employee.employeeID.toLowerCase().includes(searchQuery.toLowerCase())
+        employee.employeeID.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        employee.nic.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // Function to handle salary report generation
     const generateSalaryReport = (employee) => {
-        // Logic to generate the salary report for the employee
-        // Here, you might fetch the salary data from the backend or compute it
-        // For this example, we will assume a simple salary calculation
-
-        const salary = employee.salary; // Assuming `salary` is part of the employee object
-
-        // Example salary report generation (this could also involve PDF generation, etc.)
+        const salary = employee.salary; 
         alert(`Salary Report for ${employee.firstName} ${employee.lastName}:\nEmployee ID: ${employee.employeeID}\nSalary: ${salary}`);
-        
-        // You can also generate and download a report file, e.g., as a CSV or PDF
     };
 
     return (
@@ -56,15 +49,15 @@ export const Employeelist = () => {
             <h1>Employee Table</h1>
             
             <div className="search-container">
-    <i className="fas fa-search search-icon"></i>
-    <input
-        type="text"
-        placeholder="Search by Employee ID"
-        value={searchQuery}
-        onChange={handleSearch} // Update search query on input change
-        className="search-bar"
-    />
-</div>
+                <i className="fas fa-search search-icon"></i>
+                <input
+                    type="text"
+                    placeholder="Search by Employee ID, Name, or NIC"
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    className="search-bar"
+                />
+            </div>
 
             <table>
                 <thead>
@@ -97,20 +90,12 @@ export const Employeelist = () => {
                                 <td>{employee.phoneNumber}</td>
                                 <td>{employee.designation}</td>
                                 <td className="buttons">
-                                    {/* Delete Button */}
                                     <button onClick={() => onDeleteClick(employee._id)}>
-                                        <i className="fas fa-trash"></i> {/* Delete icon */}
+                                        <i className="fas fa-trash"></i>
                                     </button>
-
-                                    {/* Update Button */}
-                                    <Link
-                                        to={`/update/${employee._id}`}
-                                        className="fas fa-edit">
-                                    </Link>
-
-                                    {/* Salary Report Button */}
+                                    <Link to={`/update/${employee._id}`} className="fas fa-edit"></Link>
                                     <button onClick={() => generateSalaryReport(employee)}>
-                                    <i className="fas fa-trash" id="reportbtn"></i>
+                                        <i className="fas fa-file-invoice-dollar"></i>
                                     </button>
                                 </td>
                             </tr>
