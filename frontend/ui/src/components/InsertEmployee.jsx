@@ -71,10 +71,9 @@ export const InsertEmployee = () => {
     if (name === "employeeID" && !isEmployeeIdValid(value)) {
       return; // Prevent invalid employee ID input
     }
-
     // Email suggestions
     if (name === "email") {
-      const domains = ['gmail.com','icloude.com', 'yahoo.com', 'outlook.com', 'hotmail.com'];
+      const domains = ['gmail.com', 'icloud.com', 'yahoo.com', 'outlook.com', 'hotmail.com'];
       const emailParts = value.split('@');
       if (emailParts.length > 1) {
         const suggestions = domains.map(domain => `${emailParts[0]}@${domain}`);
@@ -267,7 +266,10 @@ export const InsertEmployee = () => {
           {emailSuggestions.length > 0 && (
             <ul className="suggestions">
               {emailSuggestions.map((suggestion, index) => (
-                <li key={index} onClick={() => setemployeedata({ ...employeedata, email: suggestion })}>
+                <li key={index} onClick={() => {
+                  setemployeedata({ ...employeedata, email: suggestion });
+                  setEmailSuggestions([]); // Clear suggestions after selection
+                }}>
                   {suggestion}
                 </li>
               ))}
@@ -276,7 +278,7 @@ export const InsertEmployee = () => {
           {errors.email && <span className="error">{errors.email}</span>}
         </div>
 
-        {/* NIC */}
+       {/* NIC */}
         <div className="input-container">
           <input
             type="text"
