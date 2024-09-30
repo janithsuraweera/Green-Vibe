@@ -120,17 +120,12 @@ h1 {
 }
 
 .submit-button:active{
+    background-color: #00f815;
+}
+
+
+.back-button:hover {
     background-color: #ff4b4b;
-}
-
-
-.back-button {
-    background-color: #ecd649;
-}
-
-
-.back-button :hover {
-    background-color: #3ac61d;
 }
 .clear-button:hover {
     background-color: #ff4b4b;
