@@ -90,14 +90,15 @@ export const Employeelist = () => {
                                 <td>{employee.phoneNumber}</td>
                                 <td>{employee.designation}</td>
                                 <td className="buttons">
-                                    <button onClick={() => onDeleteClick(employee._id)}>
-                                        <i className="fas fa-trash"></i>
-                                    </button>
-                                    <Link to={`/update/${employee._id}`} className="fas fa-edit"></Link>
-                                    <button onClick={() => generateSalaryReport(employee)}>
-                                        <i className="fas fa-file-invoice-dollar"></i>
-                                    </button>
-                                </td>
+    <button className="delete" onClick={() => onDeleteClick(employee._id)}>
+        <i className="fas fa-trash"></i>
+    </button>
+    <Link to={`/update/${employee._id}`} className="update fas fa-edit"></Link>
+    <button className="report" onClick={() => generateSalaryReport(employee)}>
+        <i className="fas fa-file-invoice-dollar"></i>
+    </button>
+</td>
+
                             </tr>
                         ))
                     ) : (
