@@ -54,15 +54,17 @@ export const Employeelist = () => {
     return (
         <div>
             <h1>Employee Table</h1>
-
-            {/* Search Bar */}
-            <input
-                type="text"
-                placeholder="Search by Employee ID"
-                value={searchQuery}
-                onChange={handleSearch} // Update search query on input change
-                className="search-bar"
-            />
+            
+            <div className="search-container">
+    <i className="fas fa-search search-icon"></i>
+    <input
+        type="text"
+        placeholder="Search by Employee ID"
+        value={searchQuery}
+        onChange={handleSearch} // Update search query on input change
+        className="search-bar"
+    />
+</div>
 
             <table>
                 <thead>

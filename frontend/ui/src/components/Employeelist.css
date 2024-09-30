@@ -100,11 +100,39 @@ table {
     padding-top:50px;
     color: white;
   }
-  .serchbar{
-    text-align: right;
-    padding: 20px;
 
-  }
+  .search-container {
+    position: relative;
+   
+    margin-bottom: 20px;
+    width: 50%;
 
-/* #reportbtn{
-} */
+    
+}
+
+.search-bar {
+    width: 50%;
+    padding: 10px 10px 10px 40px; /* Add padding for the icon */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 213, 64, 0.2);
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+
+}
+
+.search-bar:focus {
+    border-color: #4CAF50; 
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+
+.search-icon {
+    position: absolute;
+    left: 10px; /* Positioning the icon on the left */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa; /* Change the color as needed */
+    pointer-events: none; /* Prevent the icon from capturing clicks */
+}
