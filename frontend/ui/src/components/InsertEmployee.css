@@ -115,27 +115,30 @@ h1 {
     border-radius: 4px;
     font-size: 16px;
     margin-top: 10px;
+  background-color: #00fd15;
+    color: white;
 }
 
-.back-button {
-    background-color: #ffd166;
-}
-
-.back-button:active {
+.submit-button:active{
     background-color: #ff4b4b;
 }
 
+
+.back-button {
+    background-color: #ecd649;
+}
+
+
+.back-button :hover {
+    background-color: #3ac61d;
+}
 .clear-button:hover {
     background-color: #ff4b4b;
 }
 
-.clear-button {
+/* .clear-button {
     background-color: #ff6b6b;
     color: white;
-}
+} */
 
-.submit-button {
-    background-color: #2d6a4f;
-    color: white;
-}
 
