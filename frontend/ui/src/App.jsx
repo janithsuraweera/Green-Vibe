@@ -8,7 +8,7 @@ import UpdateEmployee from './components/UpdateEmployee'; // Import the UpdateEm
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Dropdown } from './components/Dropdown';
 import Salary from './components/Salary'; 
-
+import SalaryReport from './components/SalaryReport';
 function App() {
   return (
     <>
@@ -19,7 +19,8 @@ function App() {
           <Route path="/list" element={<Employeelist />} />
           <Route path="/insert" element={<InsertEmployee />} />
           <Route path="/update/:id" element={<UpdateEmployee />} /> {/* Route for updating */}
-          <Route path="/salary" element={<Salary />} /> {/* Route for salary report */}
+          <Route path="/salary" element={<Salary />} />
+          <Route path="/salaryreport" element={<SalaryReport />} /> {/* Route for salary report */}
         </Routes>
         <Footer />
       </Router>

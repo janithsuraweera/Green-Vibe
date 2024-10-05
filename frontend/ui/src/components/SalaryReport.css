@@ -1,0 +1,33 @@
+.salary-report-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.background-only {
+    background-image: url('/path/to/your/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.report-title {
+    font-size: 2em;
+    color: #333;
+}
+
+.download-button {
+    margin-bottom: 20px;
+}
+
+.report-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.chart-container {
+    margin-top: 20px;
+}
