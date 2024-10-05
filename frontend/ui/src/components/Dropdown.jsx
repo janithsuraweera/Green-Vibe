@@ -11,6 +11,7 @@ export const Dropdown = () => {
     <a href="#">Dashbord </a>
     <Link to="/list">Employee List</Link>
     <Link to="/insert">Add Employee</Link>
+    <Link to="/salary" className="btn btn-primary">Generate Salary Report</Link>
   </div>
 </div>
 

@@ -1,0 +1,49 @@
+.salary-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #c6d188;
+}
+
+.salary-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.salary-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.salary-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.salary-container button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.salary-container button:disabled {
+    background-color: #ccc;
+}
+
+.report {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #28a745;
+    border-radius: 5px;
+    background-color: #e8f5e9;
+}

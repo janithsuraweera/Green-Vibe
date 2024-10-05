@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Employeelist.css';
 import UpdateEmployee from './UpdateEmployee';
 
+
 export const Employeelist = () => {
     const [employees, setEmployees] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
@@ -97,6 +98,7 @@ export const Employeelist = () => {
     <button className="report" onClick={() => generateSalaryReport(employee)}>
         <i className="fas fa-file-invoice-dollar"></i>
     </button>
+    
 </td>
 
                             </tr>
