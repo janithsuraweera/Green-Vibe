@@ -115,7 +115,7 @@ const EmployeeSchema = new mongoose.Schema({
     designation: {
         type: String,
         required: true,
-        enum: ['manager', 'supervisor', 'engineer', 'technician', 'worker'],
+        enum: ['transport', 'inventory', 'rewards', 'payment', 'order','customer'],
     }
 });
 

@@ -24,14 +24,22 @@ export const InsertEmployee = () => {
   const isDateValid = (dob) => {
     const currentDate = new Date();
     const selectedDate = new Date(dob);
-    const ageLimitDate = new Date();
-    ageLimitDate.setFullYear(currentDate.getFullYear() - 60);
-    return selectedDate <= currentDate && selectedDate >= ageLimitDate;
+    
+    // Calculate the date for 18 years ago
+    const minAgeDate = new Date();
+    minAgeDate.setFullYear(currentDate.getFullYear() - 18);
+
+    // Calculate the date for 60 years ago
+    const maxAgeDate = new Date();
+    maxAgeDate.setFullYear(currentDate.getFullYear() - 60);
+
+    return selectedDate <= currentDate && selectedDate >= maxAgeDate && selectedDate <= minAgeDate;
   };
 
   // NIC validation methods
   const isNicValidOld = (nic) => /^[0-9]{9}[vV]?$/.test(nic);
   const isNicValidNew = (nic) => /^[0-9]{12}$/.test(nic);
+
 
 
   // Phone number validation (exactly 10 digits)
@@ -99,18 +107,18 @@ export const InsertEmployee = () => {
       errors.employeeID = "Employee ID is required and must be 1-5 digits.";
     }
 
-    if (!employeedata.firstName) {
-      errors.firstName = "First Name is required";
+
+    if (!employeedata.firstName || /[^a-zA-Z\s]/.test(employeedata.firstName)) {
+      errors.firstName = "First Name is required and must only contain letters.";
     }
 
-    if (!employeedata.lastName) {
-      errors.lastName = "Last Name is required";
+    if (!employeedata.lastName || /[^a-zA-Z\s]/.test(employeedata.lastName)) {
+      errors.lastName = "Last Name is required and must only contain letters.";
     }
 
     if (!employeedata.dob || !isDateValid(employeedata.dob)) {
-      errors.dob = "DOB must be a valid date and no more than 60 years in the past.";
+      errors.dob = "DOB must be a valid date, at least 18 years old, and no more than 60 years in the past.";
     }
-
     if (!employeedata.gender) {
       errors.gender = "Gender is required";
     }
@@ -217,7 +225,7 @@ export const InsertEmployee = () => {
           <label htmlFor="lastName">Last Name</label>
           {errors.lastName && <span className="error">{errors.lastName}</span>}
         </div>
-
+        
         {/* DOB */}
         <div className="input-container">
           <input
@@ -335,11 +343,12 @@ export const InsertEmployee = () => {
             value={employeedata.designation}
           >
             <option value="" disabled></option>
-            <option value="manager">Manager</option>
-            <option value="supervisor">Supervisor</option>
-            <option value="engineer">Engineer</option>
-            <option value="technician">Technician</option>
-            <option value="worker">Worker</option>
+            <option value="transport">Transport Manager</option>
+            <option value="inventory">Inventory Manager</option>
+            <option value="rewards">Rewards Manager</option>
+            <option value="payment">Payment Manager</option>
+            <option value="order">Order Manager</option>
+            <option value="customer">Customer Manager</option>
           </select>
           <label htmlFor="designation">Designation</label>
           {errors.designation && <span className="error">{errors.designation}</span>}

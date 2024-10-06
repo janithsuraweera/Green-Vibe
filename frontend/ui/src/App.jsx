@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Dropdown } from './components/Dropdown';
 import Salary from './components/Salary'; 
 import SalaryReport from './components/SalaryReport';
+import EmployeeReport from './components/EmployeeReport';
 function App() {
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/update/:id" element={<UpdateEmployee />} /> {/* Route for updating */}
           <Route path="/salary" element={<Salary />} />
           <Route path="/salaryreport" element={<SalaryReport />} /> {/* Route for salary report */}
+          <Route path="/employee-report" element={<EmployeeReport />} />
         </Routes>
         <Footer />
       </Router>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Employeelist.css';
-import UpdateEmployee from './UpdateEmployee';
-
 
 export const Employeelist = () => {
     const [employees, setEmployees] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedDesignation, setSelectedDesignation] = useState('');
+    const navigate = useNavigate(); // Initialize the useNavigate hook
 
     useEffect(() => {
         axios.get('http://localhost:9001/api/employees')
@@ -32,18 +32,30 @@ export const Employeelist = () => {
         setSearchQuery(e.target.value);
     };
 
-    // Filter employees based on search query (match against employeeID, firstName, lastName, or NIC)
-    const filteredEmployees = employees.filter(employee =>
-        employee.employeeID.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        employee.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        employee.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        employee.nic.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const handleDesignationChange = (e) => {
+        setSelectedDesignation(e.target.value);
+    };
+
+    // Filter employees based on search query and selected designation
+    const filteredEmployees = employees.filter(employee => {
+        const matchesSearchQuery =
+            employee.employeeID.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            employee.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            employee.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            employee.nic.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        const matchesDesignation = selectedDesignation ? employee.designation === selectedDesignation : true;
+
+        return matchesSearchQuery && matchesDesignation;
+    });
 
     const generateSalaryReport = (employee) => {
-        const salary = employee.salary; 
-        alert(`Salary Report for ${employee.firstName} ${employee.lastName}:\nEmployee ID: ${employee.employeeID}\nSalary: ${salary}`);
+        // Navigate to EmployeeReport page with employee details
+        navigate('/employee-report', { state: { employee } });
     };
+
+    // Get unique designations for the dropdown
+    const uniqueDesignations = [...new Set(employees.map(employee => employee.designation))];
 
     return (
         <div>
@@ -58,6 +70,15 @@ export const Employeelist = () => {
                     onChange={handleSearch}
                     className="search-bar"
                 />
+            </div>
+
+            <div className="designation-filter">
+                <select value={selectedDesignation} onChange={handleDesignationChange}>
+                    <option value="">Select Designation</option>
+                    {uniqueDesignations.map((designation, index) => (
+                        <option key={index} value={designation}>{designation}</option>
+                    ))}
+                </select>
             </div>
 
             <table>
@@ -91,16 +112,14 @@ export const Employeelist = () => {
                                 <td>{employee.phoneNumber}</td>
                                 <td>{employee.designation}</td>
                                 <td className="buttons">
-    <button className="delete" onClick={() => onDeleteClick(employee._id)}>
-        <i className="fas fa-trash"></i>
-    </button>
-    <Link to={`/update/${employee._id}`} className="update fas fa-edit"></Link>
-    <button className="report" onClick={() => generateSalaryReport(employee)}>
-        <i className="fas fa-file-invoice-dollar"></i>
-    </button>
-    
-</td>
-
+                                    <button className="delete" onClick={() => onDeleteClick(employee._id)}>
+                                        <i className="fas fa-trash"></i>
+                                    </button>
+                                    <Link to={`/update/${employee._id}`} className="update fas fa-edit"></Link>
+                                    <button className="report" onClick={() => generateSalaryReport(employee)}>
+                                        <i className="fas fa-file-invoice-dollar"></i>
+                                    </button>
+                                </td>
                             </tr>
                         ))
                     ) : (

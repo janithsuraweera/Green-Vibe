@@ -1,0 +1,17 @@
+.employee-report-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.download-button {
+    margin-bottom: 20px;
+}
+
+.report-details {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.report-details p {
+    margin: 5px 0;
+}

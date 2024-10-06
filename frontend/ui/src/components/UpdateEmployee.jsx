@@ -26,12 +26,24 @@ function UpdateEmployee() {
     axios
       .get(`http://localhost:9001/api/employees/${id}`) // Correct API route
       .then((res) => {
-        setEmployee(res.data); // Populate the form with the fetched data
+        // Assuming the date comes in a standard format, e.g., 'YYYY-MM-DD'
+        const employeeData = res.data;
+        employeeData.dob = formatDate(employeeData.dob); // Format date
+        setEmployee(employeeData); // Populate the form with the fetched data
       })
       .catch((err) => {
         console.log("Error from UpdateEmployee:", err);
       });
   }, [id]);
+
+  // Utility function to format date for input
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
   // Validation methods
   const isDateValid = (dob) => {

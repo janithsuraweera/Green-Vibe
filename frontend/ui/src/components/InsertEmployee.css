@@ -136,3 +136,10 @@ h1 {
 .clear-button:hover {
     background-color: #ff4b4b;
 }
+
+.clear-button{
+    background-color: #ffd500;
+}
+.submit-button{
+    background-color: #ffd500;
+}

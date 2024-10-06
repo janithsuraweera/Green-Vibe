@@ -4,24 +4,33 @@ import './Salary.css';
 
 const Salary = () => {
     const [employees, setEmployees] = useState([]);
-    const [designations, setDesignations] = useState([]); // Store unique designations
+    const [designations, setDesignations] = useState([]);
     const [selectedDesignation, setSelectedDesignation] = useState('');
     const [filteredEmployees, setFilteredEmployees] = useState([]);
     const [selectedEmployee, setSelectedEmployee] = useState('');
     const [salary, setSalary] = useState(0);
     const [salaryData, setSalaryData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch employee data from an API or local data
         const fetchEmployees = async () => {
-            const response = await fetch('http://localhost:9001/api/employees'); // Dummy API endpoint
-            const data = await response.json();
-            setEmployees(data);
+            try {
+                const response = await fetch('http://localhost:9001/api/employees');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch employees');
+                }
+                const data = await response.json();
+                setEmployees(data);
 
-            // Extract unique designations from employees
-            const uniqueDesignations = [...new Set(data.map(emp => emp.designation))];
-            setDesignations(uniqueDesignations);
+                const uniqueDesignations = [...new Set(data.map(emp => emp.designation))];
+                setDesignations(uniqueDesignations);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchEmployees();
@@ -31,10 +40,10 @@ const Salary = () => {
         const designation = e.target.value;
         setSelectedDesignation(designation);
 
-        // Filter employees by the selected designation
         const filtered = employees.filter(emp => emp.designation === designation);
         setFilteredEmployees(filtered);
-        setSelectedEmployee(''); // Clear selected employee if designation changes
+        setSelectedEmployee('');
+        setSalary(0); // Reset salary input when designation changes
     };
 
     const handleEmployeeChange = (e) => {
@@ -46,6 +55,11 @@ const Salary = () => {
     };
 
     const handleAddToReport = () => {
+        if (!salary || selectedEmployee === '') {
+            alert('Please select an employee and enter a salary.');
+            return;
+        }
+
         const employeeData = filteredEmployees.find(emp => emp.employeeID === selectedEmployee);
         if (employeeData) {
             const report = {
@@ -57,13 +71,25 @@ const Salary = () => {
 
             const updatedSalaryData = [...salaryData, report];
             setSalaryData(updatedSalaryData);
-            
-            // Log for debugging
             console.log("Navigating to report with data:", updatedSalaryData);
+
+            // Clear selections and input fields
+            setSelectedEmployee('');
+            setSalary(0);
+            setSelectedDesignation('');
+            setFilteredEmployees([]);
 
             navigate('/salaryreport', { state: { reportData: updatedSalaryData } });
         }
     };
+
+    if (loading) {
+        return <div>Loading employees...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div className="salary-container">

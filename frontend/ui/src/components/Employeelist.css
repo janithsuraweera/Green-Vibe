@@ -89,14 +89,6 @@ td[colspan="11"] {
   }
 }
 
-  
-  Link:first-of-type {
-    background-color: #007bff;
-  }
-  
-  button:last-of-type {
-    background-color: #ffd500;
-  }
   .buttons,Link{
     display: flex;
     
