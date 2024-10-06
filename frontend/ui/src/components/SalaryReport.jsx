@@ -30,11 +30,17 @@ const SalaryReport = () => {
                 item.employee.employeeID,
                 item.epf,
                 item.etf,
-                item.Pie
+                item.salary
             ]),
         });
-        doc.save("salary-report.pdf");
-    };
+        // Assuming you want to save the report for the first employee in the report
+    if (salaryData.length > 0) {
+        const employeeID = salaryData[0].employee.employeeID;
+        doc.save(`${employeeID} -Salary-Report.pdf`); // Employee ID used in the filename
+    } else {
+        doc.save("Salary-Report.pdf"); // Default name if no employee data
+    }
+};
 
     const pieChartData = {
         labels: salaryData.map(item => `${item.employee.firstName} ${item.employee.lastName}`),
