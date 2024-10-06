@@ -6,7 +6,7 @@ import './EmployeeReport.css';
 
 const EmployeeReport = () => {
     const location = useLocation();
-    const { reportData } = location.state || { reportData: {} };
+    const { reportData } = location.state || { reportData: {} }; // Single employee data
     const [employeeReport, setEmployeeReport] = useState({});
 
     useEffect(() => {
@@ -26,8 +26,8 @@ const EmployeeReport = () => {
             body: [[
                 `${employeeReport.firstName} ${employeeReport.lastName}`,
                 employeeReport.employeeID,
-                employeeReport.epf,
-                employeeReport.etf,
+                (employeeReport.salary * 0.08).toFixed(2), // EPF calculation
+                (employeeReport.salary * 0.03).toFixed(2), // ETF calculation
                 employeeReport.salary
             ]],
         });
@@ -37,16 +37,21 @@ const EmployeeReport = () => {
 
     return (
         <div className="employee-report-container">
-            <h1>Salary Report of {employeeReport.employeeID}</h1>
-            <button onClick={generatePDF} className="download-button">Download as PDF</button>
-
-            <div className="report-details">
-                <p>Employee Name: {employeeReport.firstName} {employeeReport.lastName}</p>
-                <p>Employee ID: {employeeReport.employeeID}</p>
-                <p>EPF: {employeeReport.epf}</p>
-                <p>ETF: {employeeReport.etf}</p>
-                <p>Salary: {employeeReport.salary}</p>
-            </div>
+            {employeeReport ? (
+                <>
+                    <h1>Salary Report of {employeeReport.employeeID}</h1>
+                    <button onClick={generatePDF} className="download-button">Download as PDF</button>
+                    <div className="report-details">
+                        <p>Employee Name: {employeeReport.firstName} {employeeReport.lastName}</p>
+                        <p>Employee ID: {employeeReport.employeeID}</p>
+                        <p>EPF: {(employeeReport.salary * 0.08).toFixed(2)}</p>
+                        <p>ETF: {(employeeReport.salary * 0.03).toFixed(2)}</p>
+                        <p>Salary: {employeeReport.salary}</p>
+                    </div>
+                </>
+            ) : (
+                <h2>No salary report available</h2>
+            )}
         </div>
     );
 };

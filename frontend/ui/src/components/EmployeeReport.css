@@ -4,7 +4,13 @@
 }
 
 .download-button {
-    margin-bottom: 20px;
+   
+    background-color: #7fff00;
+    
+}
+.download-button:hover{
+    color: rgb(255, 0, 0);
+    background-color:#5dbb00 ;
 }
 
 .report-details {

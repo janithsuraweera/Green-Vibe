@@ -6,7 +6,7 @@ import './SalaryReport.css';
 
 const SalaryReport = () => {
     const location = useLocation();
-    const { reportData } = location.state || { reportData: [] };
+    const { reportData } = location.state || { reportData: [] }; // Empty array if no report data
     const [salaryData, setSalaryData] = useState([]);
 
     useEffect(() => {
@@ -48,15 +48,15 @@ const SalaryReport = () => {
 
     return (
         <div className="salary-report-container">
-            <h1 className="report-title">Salary Report</h1>
-            <button onClick={generatePDF} className="download-button">Download as PDF</button>
-
             {salaryData.length === 0 ? (
                 <div className="background-only">
                     <h2>No salary report available yet.</h2>
                 </div>
             ) : (
                 <>
+                    <h1 className="report-title">Salary Report</h1>
+                    <button onClick={generatePDF} className="download-button">Download as PDF</button>
+
                     <table className="report-table">
                         <thead>
                             <tr>

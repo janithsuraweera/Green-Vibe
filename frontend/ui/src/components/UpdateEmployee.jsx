@@ -258,11 +258,12 @@ function UpdateEmployee() {
             <option value="" disabled>
               Select Designation
             </option>
-            <option value="manager">Manager</option>
-            <option value="supervisor">Supervisor</option>
-            <option value="engineer">Engineer</option>
-            <option value="technician">Technician</option>
-            <option value="worker">Worker</option>
+            <option value="transport">Transport Manager</option>
+            <option value="inventory">Inventory Manager</option>
+            <option value="rewards">Rewards Manager</option>
+            <option value="payment">Payment Manager</option>
+            <option value="order">Order Manager</option>
+            <option value="customer">Customer Manager</option>
           </select>
           <label>Designation</label>
           {errors.designation && <span className="error">{errors.designation}</span>}

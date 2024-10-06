@@ -16,7 +16,7 @@
 
 .report-title {
     font-size: 2em;
-    color: #333;
+    color: #ffffff;
 }
 
 .download-button {
@@ -26,6 +26,9 @@
 .report-list {
     list-style-type: none;
     padding: 0;
+}
+.total-salary{
+    color: rgb(255, 255, 255);
 }
 
 .chart-container {

@@ -98,6 +98,11 @@ const Salary = () => {
         navigate('/salaryreport', { state: { reportData: salaryData } });
     };
 
+    const handleEmployeeReport = (employeeID) => {
+        const employeeData = employees.find(emp => emp.employeeID === employeeID);
+        navigate('/employeereport', { state: { reportData: employeeData } });
+    };
+
     if (loading) {
         return <div>Loading employees...</div>;
     }
@@ -152,7 +157,10 @@ const Salary = () => {
 
             {/* Show View Report button only if there are salary reports */}
             {salaryData.length > 0 && (
-                <button onClick={handleViewReport}>View Salary Report</button>
+                <>
+                    <button onClick={handleViewReport}>View Salary Report</button>
+                    <button onClick={() => handleEmployeeReport(selectedEmployee)}>View Employee Report</button>
+                </>
             )}
         </div>
     );
