@@ -43,7 +43,7 @@ const Salary = () => {
         const filtered = employees.filter(emp => emp.designation === designation);
         setFilteredEmployees(filtered);
         setSelectedEmployee('');
-        setSalary(0); // Reset salary input when designation changes
+        setSalary(0);
     };
 
     const handleEmployeeChange = (e) => {
@@ -64,23 +64,38 @@ const Salary = () => {
         if (employeeData) {
             const report = {
                 employee: employeeData,
-                salary: salary,
-                epf: (salary * 0.08).toFixed(2), // EPF calculation
-                etf: (salary * 0.03).toFixed(2)  // ETF calculation
+                salary: parseFloat(salary),
+                epf: (salary * 0.08).toFixed(2),
+                etf: (salary * 0.03).toFixed(2)
             };
 
-            const updatedSalaryData = [...salaryData, report];
-            setSalaryData(updatedSalaryData);
-            console.log("Navigating to report with data:", updatedSalaryData);
+            // Update salaryData with the new report
+            setSalaryData(prev => {
+                const existingReportIndex = prev.findIndex(item => item.employee.employeeID === employeeData.employeeID);
+                if (existingReportIndex > -1) {
+                    // If the employee already exists in the report, update their salary
+                    const updatedData = [...prev];
+                    updatedData[existingReportIndex] = report;
+                    return updatedData;
+                }
+                return [...prev, report]; // Else add a new report
+            });
 
             // Clear selections and input fields
             setSelectedEmployee('');
             setSalary(0);
             setSelectedDesignation('');
             setFilteredEmployees([]);
-
-            navigate('/salaryreport', { state: { reportData: updatedSalaryData } });
         }
+    };
+
+    // Navigate to the SalaryReport page with current salary data
+    const handleViewReport = () => {
+        if (salaryData.length === 0) {
+            alert('No salary report available. Please add salary data first.');
+            return;
+        }
+        navigate('/salaryreport', { state: { reportData: salaryData } });
     };
 
     if (loading) {
@@ -95,7 +110,6 @@ const Salary = () => {
         <div className="salary-container">
             <h1>Salary Reporting</h1>
 
-            {/* Dropdown to select designation */}
             <label htmlFor="designation">Select Designation: </label>
             <select id="designation" value={selectedDesignation} onChange={handleDesignationChange}>
                 <option value="">-- Select --</option>
@@ -105,7 +119,6 @@ const Salary = () => {
             </select>
             <br />
 
-            {/* Dropdown to select employee based on filtered list */}
             {filteredEmployees.length > 0 && (
                 <>
                     <label htmlFor="employee">Select Employee: </label>
@@ -121,7 +134,6 @@ const Salary = () => {
                 </>
             )}
 
-            {/* Show salary input and 'Add to Report' button if an employee is selected */}
             {selectedEmployee && (
                 <>
                     <label htmlFor="salary">Salary: </label>
@@ -136,6 +148,11 @@ const Salary = () => {
 
                     <button onClick={handleAddToReport}>Add to Report</button>
                 </>
+            )}
+
+            {/* Show View Report button only if there are salary reports */}
+            {salaryData.length > 0 && (
+                <button onClick={handleViewReport}>View Salary Report</button>
             )}
         </div>
     );
