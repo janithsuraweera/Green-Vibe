@@ -10,6 +10,7 @@ import { Dropdown } from './components/Dropdown';
 import Salary from './components/Salary'; 
 import SalaryReport from './components/SalaryReport';
 import EmployeeReport from './components/EmployeeReport';
+import Dashboard from './components/Dashbord';
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
         <Navbar />
         <Dropdown></Dropdown>
         <Routes>
+        <Route path="/dashbord" element={<Dashboard />} />
           <Route path="/list" element={<Employeelist />} />
           <Route path="/insert" element={<InsertEmployee />} />
           <Route path="/update/:id" element={<UpdateEmployee />} /> {/* Route for updating */}

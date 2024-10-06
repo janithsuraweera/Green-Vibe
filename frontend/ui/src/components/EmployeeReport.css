@@ -5,7 +5,7 @@
 
 .download-button {
    
-    background-color: #7fff00;
+    background-color: #5c9424;
     
 }
 .download-button:hover{
@@ -15,7 +15,7 @@
 
 .report-details {
     font-size: 1.2em;
-    margin-top: 20px;
+    margin-top: 20px;color: white;
 }
 
 .report-details p {

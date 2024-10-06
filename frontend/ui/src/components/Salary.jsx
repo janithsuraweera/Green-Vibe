@@ -8,7 +8,7 @@ const Salary = () => {
     const [selectedDesignation, setSelectedDesignation] = useState('');
     const [filteredEmployees, setFilteredEmployees] = useState([]);
     const [selectedEmployee, setSelectedEmployee] = useState('');
-    const [salary, setSalary] = useState(0);
+    const [salary, setSalary] = useState('');
     const [salaryData, setSalaryData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -43,7 +43,7 @@ const Salary = () => {
         const filtered = employees.filter(emp => emp.designation === designation);
         setFilteredEmployees(filtered);
         setSelectedEmployee('');
-        setSalary(0);
+        setSalary('');
     };
 
     const handleEmployeeChange = (e) => {
@@ -51,7 +51,10 @@ const Salary = () => {
     };
 
     const handleSalaryChange = (e) => {
-        setSalary(e.target.value);
+        const inputSalary = parseFloat(e.target.value);
+        if (inputSalary >= 0) {
+            setSalary(inputSalary);
+        }
     };
 
     const handleAddToReport = () => {
@@ -69,27 +72,23 @@ const Salary = () => {
                 etf: (salary * 0.03).toFixed(2)
             };
 
-            // Update salaryData with the new report
             setSalaryData(prev => {
                 const existingReportIndex = prev.findIndex(item => item.employee.employeeID === employeeData.employeeID);
                 if (existingReportIndex > -1) {
-                    // If the employee already exists in the report, update their salary
                     const updatedData = [...prev];
                     updatedData[existingReportIndex] = report;
                     return updatedData;
                 }
-                return [...prev, report]; // Else add a new report
+                return [...prev, report];
             });
 
-            // Clear selections and input fields
             setSelectedEmployee('');
-            setSalary(0);
+            setSalary('');
             setSelectedDesignation('');
             setFilteredEmployees([]);
         }
     };
 
-    // Navigate to the SalaryReport page with current salary data
     const handleViewReport = () => {
         if (salaryData.length === 0) {
             alert('No salary report available. Please add salary data first.');
@@ -155,11 +154,12 @@ const Salary = () => {
                 </>
             )}
 
-            {/* Show View Report button only if there are salary reports */}
             {salaryData.length > 0 && (
                 <>
                     <button onClick={handleViewReport}>View Salary Report</button>
-                    <button onClick={() => handleEmployeeReport(selectedEmployee)}>View Employee Report</button>
+                    {selectedEmployee && (
+                        <button onClick={() => handleEmployeeReport(selectedEmployee)}>View Employee Report</button>
+                    )}
                 </>
             )}
         </div>
